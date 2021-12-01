@@ -1,16 +1,16 @@
-const userController = require('../controllers/user-controller')
-const { authentication, authorization } = require('../middlewares/auth')
+// const userController = require('../controllers/user-controller')
+// const { authentication, authorization } = require('../middlewares/auth')
 
-const router = require('express').Router()
+// const router = require('express').Router()
 
-// router.get('/profile', authentication, (req, res) => {
-//         res.json({
-//             success: true,
-//             message: "Welcome to profile!"
-//         })
-//     })
-router.get('/profile', authentication, authorization("user", "admin"), userController.profile)
-router.get('/', authentication, authorization("admin"), userController.list)
-    // router.put('/update/:id', authentication, authorization("admin"), userController.update)
+// // router.get('/profile', authentication, (req, res) => {
+// //         res.json({
+// //             success: true,
+// //             message: "Welcome to profile!"
+// //         })
+// //     })
+// router.get('/profile', authentication, authorization("user", "admin"), userController.profile)
+// router.get('/', authentication, authorization("admin"), userController.list)
+//     // router.put('/update/:id', authentication, authorization("admin"), userController.update)
 
-module.exports = router
+// module.exports = router
