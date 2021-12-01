@@ -11,5 +11,6 @@ const router = require('express').Router()
 //     })
 router.get('/profile', authentication, authorization("user", "admin"), userController.profile)
 router.get('/', authentication, authorization("admin"), userController.list)
+    // router.put('/update/:id', authentication, authorization("admin"), userController.update)
 
 module.exports = router

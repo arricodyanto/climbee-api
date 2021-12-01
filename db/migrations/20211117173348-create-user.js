@@ -10,17 +10,44 @@ module.exports = {
             },
             username: {
                 type: Sequelize.STRING,
-                unique: true,
+                allowNull: false,
+            },
+            name: {
+                type: Sequelize.STRING,
                 allowNull: false,
             },
             email: {
-                type: Sequelize.TEXT,
-                unique: true,
+                type: Sequelize.STRING,
                 allowNull: false,
             },
             password: {
                 type: Sequelize.STRING,
                 allowNull: false,
+            },
+            role: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            image: {
+                type: Sequelize.STRING
+            },
+            phone: {
+                type: Sequelize.STRING
+            },
+            address: {
+                type: Sequelize.STRING
+            },
+            district: {
+                type: Sequelize.STRING
+            },
+            city: {
+                type: Sequelize.STRING
+            },
+            province: {
+                type: Sequelize.STRING
+            },
+            postal_code: {
+                type: Sequelize.STRING
             },
             created_at: {
                 allowNull: false,

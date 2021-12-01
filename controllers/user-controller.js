@@ -21,7 +21,73 @@ const list = async(req, res, next) => {
     })
 }
 
+const update = async(req, res, next) => {
+    try {
+        const user = req.body
+        const salt = bcrypt.genSaltSync(saltRounds)
+        const hash = bcrypt.hashSync(user.password, salt)
+            // const checkPassword = bcrypt.compareSync(users.password, hash)
+        user.password = hash
+        const insertData = await db.User.create(user)
+        insertData.password = undefined
+        res.status(201).json({
+            // message: "Welcome to Register ! (controller)"
+            success: true,
+            message: "Success Registering a New User !",
+            data: insertData
+        })
+    } catch (error) {
+        if (error.message === 'Validation error') {
+            next(ApiError.badRequest("Email or Username has been already used!"))
+        } else {
+            next(error)
+        }
+    }
+}
+
+const update = async(req, res, next) => {
+    const { id } = req.user
+    const users = await db.User.update(id, {
+        username: `${req.body.username}`,
+        name: `${req.body.name}`,
+        email: `${req.body.email}`,
+        password: `${req.body.password}`,
+        role: `${req.body.role}`,
+        image: `${req.body.image}`,
+        phone: `${req.body.phone}`,
+        address: `${req.body.address}`,
+        district: `${req.body.district}`,
+        city: `${req.body.city}`,
+        province: `${req.body.province}`,
+        postal_code: `${req.body.postal_code}`
+    })
+    res.json({
+        success: true,
+        message: "Success Update a User",
+        data: users,
+    })
+
+}
+
+// app.put('/users/update/:id_account', (req, res) => {
+//     accountModel.findOneAndUpdate({ id_account: req.params.id_account }, {
+//         username: `${req.body.username}`,
+//         email: `${req.body.email}`,
+//         password: `${req.body.password}`,
+//         name: `${req.body.name}`,
+//         img_profile: `${req.body.img_profile}`,
+//         token: `${req.body.token}`,
+//         role: `${req.body.role}`,
+//         phone: `${req.body.phone}`
+//     }, function(err) {
+//         accountModel.find({}, function(err, result) {
+//             res.send(result)
+//         })
+//     })
+// })
+
 module.exports = {
     profile,
-    list
+    list,
+    update
 }

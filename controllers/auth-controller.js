@@ -30,10 +30,10 @@ const register = async(req, res, next) => {
 
 const login = async(req, res, next) => {
     try {
-        const { username, password } = req.body
+        const { email, password } = req.body
         const user = await db.User.findOne({
             where: {
-                username,
+                email,
             },
         })
         if (user) {
@@ -53,7 +53,7 @@ const login = async(req, res, next) => {
                     data: { user, token },
                 })
             } else {
-                throw ApiError.badRequest(`The password for the username ${username} is incorrect!`)
+                throw ApiError.badRequest(`The password for the email ${email} is incorrect!`)
             }
         } else {
             throw ApiError.badRequest("Username not found!")
