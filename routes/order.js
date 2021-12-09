@@ -1,10 +1,10 @@
-const productController = require('../controllers/product-controller')
+const orderController = require('../controllers/order-controller')
 const { authentication, authorization } = require('../middlewares/auth')
 
 const router = require('express').Router()
 
-router.get('/', authentication, authorization("admin", "user"), productController.list)
-router.post('/add', authentication, authorization("admin"), productController.add)
+router.get('/', authentication, authorization("admin", "user"), orderController.list)
+router.post('/add', authentication, authorization("admin", "user"), orderController.add)
     // router.put('/update', authentication, authorization("admin"), userController.update)
     // router.put('/update/:id', authentication, authorization("admin"), userController.update)
 

@@ -5,7 +5,7 @@ const list = async(req, res, next) => {
     const products = await db.Product.findAll()
     res.json({
         success: true,
-        message: "Success Retrieve All User Data",
+        message: "Success Retrieve All Product Data",
         data: products,
     })
 }
