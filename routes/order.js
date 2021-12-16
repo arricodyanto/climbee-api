@@ -5,6 +5,8 @@ const router = require('express').Router()
 
 router.get('/', authentication, authorization("admin", "user"), orderController.list)
 router.post('/add', authentication, authorization("admin", "user"), orderController.add)
+router.put('/update', authentication, authorization("admin"), orderController.update)
+router.delete('/delete', authentication, authorization("admin"), orderController.destroy)
     // router.put('/update', authentication, authorization("admin"), userController.update)
     // router.put('/update/:id', authentication, authorization("admin"), userController.update)
 

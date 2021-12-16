@@ -24,8 +24,36 @@ const add = async(req, res, next) => {
         next(error)
     }
 }
+const update = async(req, res, next) => {
+    try {
+        const product = req.body
+        const updateData = await db.Product.update(product, { where: { id: 2 } })
+        res.status(201).json({
+            success: true,
+            message: "Success Updating a product !",
+            data: updateData
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+const destroy = async(req, res, next) => {
+    try {
+        const deleteData = await db.Product.destroy({ where: { id: 2 } })
+        res.status(201).json({
+            success: true,
+            message: "Success Deleting a product !",
+            data: deleteData
+        })
+    } catch (error) {
+        next(error)
+    }
+}
 
 module.exports = {
     list,
-    add
+    add,
+    update,
+    destroy
 }

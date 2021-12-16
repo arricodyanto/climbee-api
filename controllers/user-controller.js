@@ -13,12 +13,38 @@ const profile = async(req, res, next) => {
 }
 
 const list = async(req, res, next) => {
-        const users = await db.User.findAll()
-        res.json({
+    const users = await db.User.findAll()
+    res.json({
+        success: true,
+        message: "Success Retrieve All User Data",
+        data: users,
+    })
+}
+const update = async(req, res, next) => {
+    try {
+        const user = req.body
+        const updateData = await db.User.update(user, { where: { id: 2 } })
+        res.status(201).json({
             success: true,
-            message: "Success Retrieve All User Data",
-            data: users,
+            message: "Success Updating a user !",
+            data: updateData
         })
+    } catch (error) {
+        next(error)
+    }
+}
+
+const destroy = async(req, res, next) => {
+        try {
+            const deleteData = await db.User.destroy({ where: { id: 2 } })
+            res.status(201).json({
+                success: true,
+                message: "Success Deleting a user !",
+                data: deleteData
+            })
+        } catch (error) {
+            next(error)
+        }
     }
     // // const update = async(req, res, next) => {
     // //     try {
@@ -88,5 +114,6 @@ const list = async(req, res, next) => {
 module.exports = {
     profile,
     list,
-    // update
+    update,
+    destroy
 }
