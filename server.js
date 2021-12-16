@@ -3,12 +3,13 @@ const errorHandler = require('./middlewares/error-handler')
 const app = express()
 const port = process.env.PORT || 3000
 const routers = require('./routes')
+var cors = require('cors')
     // const users = require('./db/models/user')
     // const db = require('./db/models')
     // const { Sequelize } = require('sequelize');
     // const sequelize = new Sequelize(`postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`) // Example for postgres
 
-
+app.use(cors())
 app.use(express.json())
 app.use(routers)
 
